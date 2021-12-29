@@ -5,4 +5,7 @@ from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse('Home Page')
+    return render(request,'index.html')
+
+def signin(request):
+    return render(request,'sign-in.html')
