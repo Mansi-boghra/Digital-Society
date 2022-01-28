@@ -44,7 +44,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <p>{{msg}}</p>
+                <p style="text-align: center; color: red;">{{msg}}</p>
                 <form role="form" action="{% url 'otp' %}" method="POST" class="text-start">
                   {% csrf_token %}
                   <div class="input-group input-group-outline my-3">

@@ -1,0 +1,72 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Add-event</title>
+{% endblock %}
+
+{% block event %}
+<li class="nav-item">
+  <a class="nav-link text-white bg-gradient-primary " href="{% url 'add-event' %}">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">person</i>
+    </div>
+    <span class="nav-link-text ms-1">Add-event</span>
+  </a>
+</li>
+{% endblock %}
+
+{% block content %}
+  <!-- End Navbar -->
+  <div class="container-fluid px-2 px-md-4"><br><br><br>
+    <!-- <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+      <span class="mask  bg-gradient-primary  opacity-6"></span>
+    </div> -->
+    <div class="card card-body mx-3 mx-md-4 mt-n6">
+      <div class="row gx-4 mb-2">
+        <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+          <div class="nav-wrapper position-relative end-0">
+            
+          </div>
+        </div>
+      </div>
+      Add Event
+      <div class="row">
+        <div class="row">
+          <div class="card-body">
+            <form role="form" action="{% url 'add-event' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+                <div class="row">
+                  <div class="col-4">
+                    <label for="" class="form-control">Event title</label>
+                    <input type="text" name="title" class="form-control" placeholder="Enter event title..." style="background-color: rgb(250, 243, 242); padding-left: 10px; border: black solid 1px;" id="">
+                  </div>
+                  <div class="col-4">
+                    <label for="" class="form-control">Event Date</label>
+                    <input type="date" name="date" class="form-control" placeholder="Enter event date... " style="background-color: rgb(250, 243, 242); padding-left: 10px; border: black solid 1px;" id="">
+                  </div>
+                  <div class="row">
+                    <div class="col-8">
+                      <label for="" class="form-control">Description</label>
+                      <textarea name="des" class="form-control" placeholder="type here..." id="" cols="30" rows="10"  style="background-color: rgb(250, 243, 242); padding-left: 10px; border: black solid 1px;"></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-8">
+                      <label for="" class="form-control">Event Pic</label>
+                      <input type="file" name="pic" class="form-control" style="background-color: rgb(250, 243, 242); padding-left: 10px; border: black solid 1px;" id="">
+                    </div>
+                  </div><br><br>
+                  <div class="row" style="padding-top: 10px;">
+                    <div class="col-3">
+
+                      <button type="submit" class="btn btn-primary">Add Event</button>
+                    </div>
+                  </div>
+                </div>
+             </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
