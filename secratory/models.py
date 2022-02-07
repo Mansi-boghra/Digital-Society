@@ -27,3 +27,34 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
+class Emergency(models.Model):
+
+    uid = models.ForeignKey(AdminSec,on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    occup = models.CharField(max_length=30)
+    contact = models.CharField(max_length=15)
+    email = models.EmailField(null=True,blank=True)
+
+    def __str__(self):
+        return self.name
+
+class Member(models.Model):
+
+    uid = models.ForeignKey(AdminSec,on_delete=models.CASCADE)
+    fname = models.CharField(max_length=15)
+    lname = models.CharField(max_length=15)
+    email = models.EmailField(unique=True)
+    mobile = models.CharField(max_length=15)
+    password = models.CharField(max_length=20)
+    pic = models.FileField(upload_to='member',default='avtar.jpg')
+    flat_no = models.IntegerField()
+    wing = models.CharField(max_length=2)
+    address = models.TextField(null=True,blank=True)
+    doc_type = models.CharField(max_length=20)
+    doc_num = models.CharField(max_length=20)
+    create_at = models.DateTimeField(auto_now_add=True)
+    role = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.fname + '   ' + self.lname

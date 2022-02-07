@@ -1,7 +1,6 @@
-from urllib import request
+import re
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
-
 from .models import *
 from random import randrange, choices
 from django.conf import settings
@@ -118,16 +117,37 @@ def otp(request):
             return render(request,'otp.html',{'msg':msg,'otp':request.POST['otp']})
     # return render(request,'otp.html')
 
-
 def logout(request):
     del request.session['email']
     return redirect('sign-in')
 
 def add_event(request):
-    # if 'pic' in request.FILES
-    # request.FILES['pic']
-    return render (request,'Add-event.html')
+    uid = AdminSec.objects.get(email=request.session['email'])
+    if request.method == 'POST':
+        # if 'pic' in request.FILES:
+            Event.objects.create(
+                uid = uid,
+                title = request.POST['title'],
+                des = request.POST['des'],
+                event_at = request.POST['event_at'],
+                # pic = request.FILES['pic'],
+                pic = request.FILES['pic'] if 'pic' in request.FILES else None
+            )
+            msg = 'Event added successfully'
+            events = Event.objects.all()[::-1]
 
+            return render(request,'add-event.html',{'msg':msg,'uid':uid,'events':events})
+        # else:
+        #     Event.objects.create(
+        #         uid = uid,
+        #         title = request.POST['title'],
+        #         des = request.POST['des'],
+        #         event_at = request.POST['event_at']
+        #     )
+        #     msg = 'Event added successfully'
+        #     return render(request,'add-event.html',{'msg':msg,'uid':uid})
+    events = Event.objects.all()[::-1]
+    return render(request,'add-event.html',{'uid':uid,'events':events})
 
 def change_password(request):
     uid = AdminSec.objects.get(email=request.session['email'])
@@ -140,3 +160,22 @@ def change_password(request):
             return render(request,'change-password.html',{'msg':'New Password is not match'})
         return render(request,'change-password.html',{'msg':'Old Password is not correct'})
     return render(request,'change-password.html')
+
+def delete_event(request,pk):
+    event = Event.objects.get(id=pk)
+    event.delete()
+    return redirect('add-event')
+
+def edit_event(request,pk):
+    uid = AdminSec.objects.get(email=request.session['email'])
+    event = Event.objects.get(id=pk)
+    date = str(event.event_at)
+    if request.method == 'POST':
+        event.title = request.POST['title']
+        event.des = request.POST['des']
+        event.event_at = request.POST['event_at']
+        if 'pic' in request.FILES:
+            event.pic = request.FILES['pic']
+        event.save()
+        return redirect('add-event')
+    return render(request,'edit-event.html',{'uid':uid,'event':event,'date':date})

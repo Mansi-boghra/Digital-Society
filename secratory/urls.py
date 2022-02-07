@@ -10,7 +10,9 @@ urlpatterns = [
     path('forgot-password/',views.forgot_password,name='forgot-password'),
     path('otp/',views.otp,name='otp'),
     path('logout/',views.logout,name='logout'),
-    path('add-event/',views.add_event,name='add-event')
+    path('add-event/',views.add_event,name='add-event'),
+    path('delete-event/<int:pk>',views.delete_event,name='delete-event'),
+    path('edit-event/<int:pk>',views.edit_event,name='edit-event'),
    
 ]
 
