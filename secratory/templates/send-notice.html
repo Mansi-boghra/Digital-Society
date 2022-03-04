@@ -1,0 +1,142 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Send Notice</title>
+{% endblock %}
+
+{% block notice %}
+<li class="nav-item">
+  <a class="nav-link text-white bg-gradient-primary" href="{% url 'send-notice' %}">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">receipt_long</i>
+    </div>
+    <span class="nav-link-text ms-1">Send Notice</span>
+  </a>
+</li>
+{% endblock %}
+
+{% block content %}
+  <!-- End Navbar -->
+  <div class="container-fluid px-2 px-md-4"><br><br><br>
+    <!-- <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+      <span class="mask  bg-gradient-primary  opacity-6"></span>
+    </div> -->
+    <div class="card card-body mx-3 mx-md-4 mt-n6">
+      <div class="row gx-4 mb-2">
+        <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+          <div class="nav-wrapper position-relative end-0">
+            
+          </div>
+        </div>
+      </div>
+      Send Notice
+      <div class="row">
+        <p style="text-align: center; color: red;">{{msg}}</p>
+        <div class="row">
+          <div class="card-body">
+            <form role="form" action="{% url 'send-notice' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+                <div class="row">
+                  <div class="col-8">
+                    <label for="" class="form-control">Send To:</label>
+                    <!-- <input type="text" name="title" class="form-control" required placeholder="Enter event title..." style="background-color: rgb(250, 243, 242); padding-left: 10px; border: black solid 1px;" id=""> -->
+                    <select name="send-to" class="form-control" required id="" style="background-color: rgb(250, 243, 242); padding-left: 10px; border: black solid 1px;">
+                      <option>--</option>
+                      {% for member in members %}
+                      <option value="{{member.email}}">{{member.fname}} {{member.lname}} {{member.flat_no}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="col-8">
+                    <label for="" class="form-control">Subject</label>
+                    <input type="text" name="subject" class="form-control" required placeholder="Enter Subject..." style="background-color: rgb(250, 243, 242); padding-left: 10px; border: black solid 1px;" id="">
+                    
+                  </div>
+                  <div class="row">
+                    <div class="col-8">
+                      <label for="" class="form-control">Description</label>
+                      <textarea name="des" class="form-control" required placeholder="type here..." id="" cols="30" rows="10"  style="background-color: rgb(250, 243, 242); padding-left: 10px; border: black solid 1px;"></textarea>
+                    </div>
+                  </div>
+                  <br><br><br>
+                  <div class="row" style="padding-top: 20px;">
+                    <div class="col-3">
+
+                      <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Send Notice</button>
+                    </div>
+                  </div>
+                </div>
+             </form>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-12">
+      <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+            <h6 class="text-white text-capitalize ps-3">Events</h6>
+          </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created By:</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Event @ :</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Posted @ :</th>
+                  <th class="text-secondary opacity-7" style="text-align: center;" colspan="2">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for event in events %}
+                <tr>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div>
+                        {% if event.uid.pic %}
+                        <img src="{{event.uid.pic.url}}" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                        {% endif %}
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{event.uid.name}}</h6>
+                        <p class="text-xs text-secondary mb-0">{{event.uid.email}}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">{{event.title}}</p>
+                    <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="badge badge-sm bg-gradient-success">{{event.event_at}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{event.created_at}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <a href="{% url 'edit-event' event.id %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                      Edit
+                    </a>
+                  </td>
+                  <td class="align-middle">
+                    <a href="{% url 'delete-event' event.id %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                      Delete
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'member-header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Edit Member Profile</title>
+{% endblock %}
+
+{% block content %}
+<br><br><br><br><br>
+<main id="main" class="site-main">
+    <section class="site-section subpage-site-section section-contact-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div style="align-items: center;">
+                        <h2 style="text-align: center;"> Edit Profile <br><span style="font-size: small;">You are a <span style="color: red;">"{{member.role}}"</span>  right now</span> </h2>
+                        {% if msg %}
+                        <p style="color: red; text-align: center; margin-bottom: 20px ;">{{msg}}</p>
+                        {% endif %}
+                    </div>
+                    <form action="{% url 'member-edit-profile' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="name">First Name:</label>
+                                  <input type="text" name="fname" value="{{uid.fname}}" required style="background-color: rgb(152, 235, 152);" placeholder="Enter Your First Name..." class="form-control" id="fname">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group lastname">
+                                  <label for="email">Last Name:</label>
+                                  <input type="text" name="lname" value="{{uid.lname}}" placeholder="Enter Your Last Name..." style="background-color: rgb(152, 235, 152);" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                  <label for="name">Email:</label>
+                                  <input type="email" disabled value="{{uid.email}}" placeholder="Enter Your Email..." style="background-color: rgb(152, 235, 152);" class="form-control" id="fname">
+<!--                                   <p style="color: red; font-size: smaller; margin-left: 30px;">*You can't change this field</p> -->
+                                </div>
+                            </div>
+                      
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                  <label for="email">Mobile:</label>
+                                  <input type="text" name="mobile" value="{{uid.mobile}}" placeholder="Enter Your Mobile Number..." style="background-color: rgb(152, 235, 152);" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group lastname">
+                                  <label for="name">Flat No:</label>
+                                  <input type="text" value="{{uid.flat_no}}" disabled style="background-color: rgb(152, 235, 152);" placeholder="Enter Your Flat Number..." class="form-control" id="fname">
+<!--                                   <p style="color: red; font-size: smaller; margin-left: 30px;">*You can't change this field</p> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                  <div class="form-group">
+                                     <label for="name">Wing:</label>
+                                     <input type="text" value="{{uid.wing}}" disabled style="background-color: rgb(152, 235, 152);" placeholder="Enter Your wing Number..." class="form-control" id="fname">
+    <!--                                  <p style="color: red; font-size: smaller; margin-left: 30px;">*You can't change this field</p> -->
+                                                             
+                                   </div>
+                                </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                  <label for="email">Address:</label>
+                                  <input type="text" name="address" value="{{uid.address}}" placeholder="Enter Your Address..." style="background-color: rgb(152, 235, 152);" class="form-control" id="">
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                  <label for="email">Document type:</label>
+                                  <input type="text" disabled placeholder="Enter Your Mobile..." value="{{uid.doc_type}}" style="background-color: rgb(152, 235, 152);" class="form-control" id="">
+<!--                                   <p style="color: red; font-size: smaller; margin-left: 30px;">*You can't change Document type</p> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                  <label for="name">Document no: </label><span>{% if member.verify %} <i class="fa fa-check" style="color: green"></i> {% else %} <i class="fa fa-close" style="color: red;"></i> {% endif %} </span>
+                                  <input type="text" disabled value="{{uid.doc_num}}" style="background-color: rgb(152, 235, 152);" placeholder="Enter Your Flat Number..." class="form-control" id="fname">
+<!--                                   <p style="color: red; font-size: smaller; margin-left: 30px;">*You can't change this field</p> -->
+                                   
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                  <label for="email">Profile Pic</label>
+                                  <input type="file" name="pic" placeholder="Enter Your Address..." style="background-color: rgb(152, 235, 152);" class="form-control" id="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-green" type="submit"></i>  Edit Profile </button>
+                        </div>
+                    </form>
+                   
+                </div>
+              
+            </div>
+        </div>
+       
+    </section><!-- /.section-contact-us -->
+</main>
+{% endblock %}

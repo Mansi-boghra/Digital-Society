@@ -1,0 +1,49 @@
+{% extends 'member-header.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .col-md-8.col-md-offset-2 {
+    overflow: hidden;
+}
+
+.row.mt-50 {
+    margin-left: 0;
+    margin-right: 0;
+}
+a.forgot.text-center {
+    margin-top: 20px;
+    display: block;
+}
+</style>
+<br><br><br><br>
+
+<div class="row mt-50">
+    <div class="col-md-8 col-md-offset-2">
+        <h2 class="text-center heading-separator">Login</h2>
+        {{msg}}
+        <form method="POST" action="{% url 'member-login' %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="email">E-mail:</label>
+                      <input name="email" type="email" class="form-control" id="email">
+                    </div>
+                </div>
+                <div class="col-sm-12 mt-20">
+                    <div class="form-group">
+                      <label for="name">Password:</label>
+                      <input name="password" type="password" class="form-control" id="password">
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-20">
+                <button class="btn btn-green" type="submit">Sign in</button><br>
+                <!-- <a href="#" class="forgot text-center">Forgot password</a> -->
+            </div>
+        </form>
+    </div>
+</div><!-- /.form -->
+<br><br>
+
+{% endblock %}

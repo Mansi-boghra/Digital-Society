@@ -1,0 +1,167 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Complain</title>
+{% endblock %}
+
+{% block complain %}
+    <li class="nav-item">
+        <a class="nav-link text-white bg-gradient-primary" href="{% url 'complain' %}">
+        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa fa-sticky-note-o"></i>
+        </div>
+        <span class="nav-link-text ms-1">Complain</span>
+        </a>
+    </li>
+{% endblock %}
+
+{% block content %}
+  <!-- End Navbar -->
+  <div class="container-fluid px-2 px-md-4"><br><br><br>
+    <!-- <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+      <span class="mask  bg-gradient-primary  opacity-6"></span>
+    </div> -->
+    <h3>Complain</h3>
+  </div>
+</div>
+
+  <br>
+  
+  <div class="row">
+    <div class="col-12">
+      <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+            <h6 class="text-white text-capitalize ps-3">Pendding Complain</h6>
+          </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">Complain by:</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subject:</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description:</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">status:</th>
+                  <th class="text-secondary opacity-7" colspan="2" style="text-align: center;" >Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for complain in complains %}
+                {% if complain.status == False %}
+
+                <tr>
+                  <td style="margin-left: 50;">
+                    <div class="d-flex px-2 py-1">
+                      
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm" >{{complain.complain_by}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">{{complain.subject}}</p>
+                    <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="badge badge-sm bg-gradient-success">{{complain.des}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <!-- <p>{% if one.status == True %} {% else %} Pending {% endif %}</p><br> -->
+                    <span class="text-secondary text-xs font-weight-bold">{% if complain.status == True %} Solved {% else %} Pending {% endif %}</span>
+                  </td>
+                  <td style="text-align: right;">
+                  <a href="{% url 'solve-complain' complain.id %}">
+                  <button type="submit" class="btn btn-primary"> Solve complain</button>
+                  </a></td>
+                  <td>
+                  <a href="{% url 'view-complain' complain.id %}">
+                  <button type="submit" class="btn btn-primary"> View complain</button>
+                  </a>
+                </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+
+    <div class="col-12">
+      <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+            <h6 class="text-white text-capitalize ps-3">Solve complain</h6>
+          </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">Complain by:</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">Solve by:</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subject:</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description:</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Solved @:</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">status:</th>
+                  <th class="text-secondary opacity-7" style="text-align: center;" >Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for complain in complains %}
+                {% if complain.status %}
+
+                <tr>
+                  <td style="margin-left: 50;">
+                    <div class="d-flex px-2 py-1">
+                      
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm" >{{complain.complain_by}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="margin-left: 50;">
+                    <div class="d-flex px-2 py-1">
+                      
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm" >{{complain.solve_by}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">{{complain.subject}}</p>
+                    <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="badge badge-sm bg-gradient-success">{{complain.des}}</span>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="badge badge-sm bg-gradient-success">{{complain.solved_at}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <!-- <p>{% if one.status == True %} {% else %} Pending {% endif %}</p><br> -->
+                    <span class="text-secondary text-xs font-weight-bold">{% if complain.status %} Solved {% else %} Pending {% endif %}</span>
+                  </td>
+                  <td>
+                    <a href="{% url 'view-complain' complain.id %}">
+                    <button type="submit" class="btn btn-primary"> View complain</button>
+                    </a>
+                  </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

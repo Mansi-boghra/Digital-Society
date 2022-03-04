@@ -391,7 +391,7 @@ select {
 }
 
 .bootstrap-select.btn-group .dropdown-menu.inner {
-    position: static; *
+    position: static; 
     float: none;
     border: 0;
     padding: 0;
@@ -400,7 +400,41 @@ select {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+.form-group.old {
+    max-width: 50%;
+    margin-left: 0;
+}
+button.btn.btn-green {
+    margin: 20px 0px 80px;
+}
 
+.card .col-sm-12 {
+    padding-left: 0;
+}
+input#fname {
+    background-color: white !important;
+}
+.form-group.lastname {
+    top: -20px;
+    position: relative;
+}
+form .col-lg-6 {
+    position: relative;
+    margin-bottom: -70px;
+}
+.card.card-body.mx-3.mx-md-4.mt-n6 .row {
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+    margin-top: 30px;
+}
+form .col-lg-4 {
+    position: relative;
+    bottom: -40px;
+}
+input.form-control {
+    background-color: white !important;
+}
 .bootstrap-select.open .dropdown-menu {
     display: block;
     border: 1px solid #26272d; 
@@ -1589,4 +1623,34 @@ a.linkedin-bg:hover {
 .section-map {
   height: 500px;
   width: 100%
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #6fc754; 
+  }
+  
+  /* gallery*/
+  .gallerybg{
+    background: url(../img/hero.jpg) no-repeat center / cover;
+    height: 100%;
+    width: 100%;
+    display: table;
+    position: relative;
+    padding: 210px 0px;
+    background-position: top;
+  }
+  .top-side.gallerybg h2 {
+    font-size: 60px !important;
+    font-weight: 400 !important;
 }

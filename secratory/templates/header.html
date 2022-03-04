@@ -45,14 +45,16 @@
           </a>
         </li>
         {% endblock %}
+        {% block manage-member %}
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/tables.html">
+          <a class="nav-link text-white " href="{% url 'manage-member' %}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
-            <span class="nav-link-text ms-1">Tables</span>
+            <span class="nav-link-text ms-1">Manage Member</span>
           </a>
         </li>
+        {% endblock %}
         {% block event %}
         <li class="nav-item">
           <a class="nav-link text-white" href="{% url 'add-event' %}">
@@ -63,38 +65,58 @@
           </a>
         </li>
         {% endblock %}
+        {% block notice %}
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/billing.html">
+          <a class="nav-link text-white" href="{% url 'send-notice' %}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">receipt_long</i>
+
             </div>
-            <span class="nav-link-text ms-1">Billing</span>
+            <span class="nav-link-text ms-1">Send Notice</span>
           </a>
         </li>
+        {% endblock %}
+        {% block gallery %}
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/virtual-reality.html">
+          <a class="nav-link text-white" href="{% url 'gallery' %}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">view_in_ar</i>
+              <i class="fa fa-image"></i>
             </div>
-            <span class="nav-link-text ms-1">Virtual Reality</span>
+            <span class="nav-link-text ms-1">Gallery</span>
           </a>
         </li>
+        {% endblock %}
+        {% block complain %}
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/rtl.html">
+          <a class="nav-link text-white " href="{% url 'complain' %}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
+              <i class="fa fa-sticky-note-o"></i>
             </div>
-            <span class="nav-link-text ms-1">RTL</span>
+            <span class="nav-link-text ms-1">Complain</span>
           </a>
         </li>
+        {% endblock %}
+        {% block maintenance %}
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/notifications.html">
+          <a class="nav-link text-white " href="{% url 'maintenance' %}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">notifications</i>
+              <i class="fa fa-money"></i>
             </div>
-            <span class="nav-link-text ms-1">Notifications</span>
+            <span class="nav-link-text ms-1">maintenance</span>
           </a>
         </li>
+        {% endblock %}
+        {% block emergency-cont %}
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'emergency-cont' %}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-phone"></i>
+            </div>
+            <span class="nav-link-text ms-1">emergency contact</span>
+          </a>
+        </li>
+        {% endblock %}
+        
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
         </li>
@@ -108,7 +130,6 @@
           </a>
         </li>
         {% endblock %}
-        
         {% block change-password %}
         <li class="nav-item">
           <a class="nav-link text-white " href="{% url 'change-password' %}">
@@ -119,14 +140,16 @@
           </a>
         </li>
         {% endblock %}
+        {% block logout %}
         <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/sign-up.html">
+          <a class="nav-link text-white " href="{% url 'logout' %}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">assignment</i>
+              <i class="fa fa-sign-out"></i>
             </div>
-            <span class="nav-link-text ms-1">Sign Up</span>
+            <span class="nav-link-text ms-1">logout</span>
           </a>
         </li>
+        {% endblock %}
       </ul>
     <!-- </div> -->
     
@@ -151,7 +174,7 @@
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+              <a href="{% url 'profile' %}" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">profile</span>
               </a>

@@ -1,0 +1,65 @@
+{% extends 'member-header.html' %}
+{% load static %}
+
+{% block title %}
+<title> Member complain</title>
+{% endblock %}
+
+{% block content %}
+<!-- End Navbar -->
+<section class="complain">
+<div class="top-side gallerybg text-center">
+     
+  <h2>Complain</h2>
+</div>
+<div class="container-fluid px-2 px-md-4">
+    <!-- <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+      <span class="mask  bg-gradient-primary  opacity-6"></span>
+    </div> -->
+    <div class="card card-body mx-3 mx-md-4 mt-n6">
+      <div class="row gx-4 mb-2">
+        <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+          <div class="nav-wrapper position-relative end-0">
+            
+          </div>
+        </div>
+      </div>
+      <p style="text-align: center; color: red;">{{msg}}</p>
+      <div class="container">
+      <div class="row">
+        
+        <div class="row">
+          <div class="card-body">
+            <h4>Complain <i class="fa fa-sticky-note-o"></i></h4>
+            <form role="form" action="{% url 'member-complain' %}" method="POST">
+              {% csrf_token %}
+              <div class="row">
+                
+                <div class="col-sm-12 mt-20">
+                    <div class="form-group old">
+                      <label for="npass">Subject:</label>
+                      <input name="subject" type="text" placeholder="Enter your subject..." class="form-control" id="" required>
+                    </div>
+                </div>
+                <div class="col-sm-12 mt-20">
+                  <div class="form-group old">
+                    <label for="cpass">Description:</label>
+                    <textarea name="description" placeholder="Enter Description..." class="form-control" id="" cols="30" rows="10"></textarea>
+                  </div>
+               </div>
+              
+            </div>
+            <div class="text-left mt-20">
+                <button class="btn btn-green" type="submit"><i class="fa fa-sticky-note-o"></i> &nbsp; Add complain</button><br>
+               
+            </div> 
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</section>
+
+{% endblock %}

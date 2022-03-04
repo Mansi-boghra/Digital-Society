@@ -1,0 +1,157 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(80, 73, 73);
+  -webkit-transition: .4s;
+  transition: .4s;
+  }
+  
+  .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: rgb(250, 250, 250);
+  -webkit-transition: .4s;
+  transition: .4s;
+  }
+  
+  input:checked + .slider {
+  background-color: #e696d4;
+  }
+  
+  input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+  border-radius: 34px;
+  }
+  
+  .slider.round:before {
+  border-radius: 50%;
+  }
+  </style>
+  
+
+<div class="card card-body mx-3 mx-md-4 mt-n6">
+    <div class="row gx-4 mb-2">
+      
+      <div class="col-auto my-auto">
+        <div class="h-100">
+          <h4>Edit member <span style="color: palevioletred;"> {{members.fname}}</span></h4>
+        </div>
+      </div>
+      
+    </div>
+    <p style="margin-left: 100px; color: red;">{{msg}}</p>
+
+    <div style="margin: 50px;">
+    <form action="{% url 'edit_member' members.id %}" method="POST">
+        {% csrf_token %}
+      <div class="row">
+          <div class="form-group col-6">
+              <label for="exampleInputPassword1"><b>First Name</b></label>
+              <input type="text" class="form-control" value="{{members.fname}}" required placeholder="Enter your First name..." style="background-color: rgb(243, 229, 229); padding-left: 20px;" name="fname" id="exampleInputPassword1" placeholder="Member's First Name..." required>
+          </div>
+          <div class="form-group col-6">
+              <label for="exampleInputPassword1"><b>Last Name</b></label>
+              <input type="text" class="form-control" value="{{members.lname}}" required placeholder="Enter your last name..." style="background-color: rgb(243, 229, 229); padding-left: 20px;" name="lname" id="exampleInputPassword1" placeholder="Member's Last Name..." required>
+          </div>
+      </div><br><br>
+      <div class="row">
+          <div class="form-group col-6">
+              <label for="exampleInputPassword1"><b>Mobile</b></label>
+              <input type="text" class="form-control" value="{{members.mobile}}" required placeholder="Enter your mobile no..." style="background-color: rgb(243, 229, 229); padding-left: 20px;" name="mobile" id="exampleInputPassword1" placeholder="Member's Mobile..." required>
+          </div>
+          <div class="form-group col-6">
+              <label for="exampleInputEmail1"><b>Email</b></label>
+              <input type="email"  disabled name="email"  class="form-control" value="{{members.email}}" required placeholder="Enter your email..." id="exampleInputEmail1" style="background-color: rgb(243, 229, 229); padding-left: 20px;" aria-describedby="emailHelp" required placeholder="Member's Email">
+          </div>
+      </div><br><br>
+
+      <div class="row">
+        <div class="form-group col-3">
+            <label for="exampleInputPassword1"><b>Wing:</b></label>
+            <select name="wing" style="background-color: rgb(243, 229, 229); padding-left: 20px;" class="form-control" id=""  required>
+                <option value="" selected>--</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+        </div>
+
+          <div class="form-group col-3">
+              <label for="exampleInputPassword1"><b>Flat No:</b></label>
+              <input type="text"  disabled name="flat_no" class="form-control" value="{{members.flat_no}}" style="background-color: rgb(243, 229, 229); padding-left: 20px;" name="flat_no" id="exampleInputPassword1" placeholder="Member's Flat Number..." required>
+          </div>
+          <div class="form-group col-6">
+              <label for="exampleInputEmail1"><b>Another Address</b></label>
+              <input type="text" disabled name="address"  class="form-control" value="{{members.address}}" id="exampleInputEmail1" style="background-color: rgb(243, 229, 229); padding-left: 20px;" aria-describedby="emailHelp" required placeholder="Member's Another Address">
+          </div>
+      </div><br><br>
+
+      <div class="row">
+          <div class="form-group col-3">
+              <label for="exampleInputEmail1"><b>Select Document Type : </b></label>
+              <select name="doc" style="background-color: rgb(243, 229, 229); padding-left: 20px;" class="form-control" id=""  required>
+                  <option value="" selected>--</option>
+                  <option value="Aadhar">Aadhar Card</option>
+                  <option value="PAN">PAN number</option>
+                  <option value="DL">Driving License</option>
+                  <option value="Other">Other</option>
+              </select>
+          </div>
+          <div class="form-group col-3">
+              <label for="exampleInputEmail1"><b>Is it a Member ?</b></label><br>
+              <label class="switch">
+                  <input type="checkbox" value="True" name="verify" style="margin-left: 20px;">
+                  <span class="slider round"></span>
+              </label>
+          </div>
+          <div class="form-group col-6">
+              <label for="exampleInputPassword1"><b>Document Number</b></label>
+              <input type="text" disabled name="doc_num" class="form-control" value="{{members.doc_num}}"  style="background-color: rgb(243, 229, 229); padding-left: 20px;" name="dnumber" id="exampleInputPassword1" placeholder="Document Number..." required>
+          </div>
+      </div><br><br><br>
+      
+      <button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i> &nbsp;Edit Member</button>
+    </form>
+
+  </div>
+
+{% endblock %}

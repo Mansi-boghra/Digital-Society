@@ -1,3 +1,4 @@
+from calendar import month
 from django.db import models
 
 # Create your models here.
@@ -44,6 +45,7 @@ class Member(models.Model):
     uid = models.ForeignKey(AdminSec,on_delete=models.CASCADE)
     fname = models.CharField(max_length=15)
     lname = models.CharField(max_length=15)
+    
     email = models.EmailField(unique=True)
     mobile = models.CharField(max_length=15)
     password = models.CharField(max_length=20)
@@ -58,3 +60,23 @@ class Member(models.Model):
 
     def __str__(self):
         return self.fname + '   ' + self.lname
+
+class Gallery(models.Model):
+
+    uid = models.ForeignKey(AdminSec,on_delete=models.CASCADE)
+    pic = models.FileField(upload_to='gallery')
+
+    def __str__(self):
+        return self.uid.name + '  ' + str(self.pic.url)
+
+class Maintenance(models.Model):
+
+    pay_by = models.ForeignKey(AdminSec,on_delete=models.CASCADE)
+    amount = models.IntegerField(default=0)
+    pay_time = models.DateTimeField(auto_now_add=True)
+    month = models.CharField(max_length=15)
+    year = models.IntegerField()
+    pay_id = models.CharField(max_length=20,unique=True)
+
+    def __str__(self):
+        return self.pay_by.fname + ' ' + self.pay_by.lname

@@ -7,7 +7,7 @@
 
 {% block event %}
 <li class="nav-item">
-  <a class="nav-link text-white" href="{% url 'add-event' %}">
+  <a class="nav-link text-white bg-gradient-primary" href="{% url 'add-event' %}">
     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
       <i class="material-icons opacity-10">person</i>
     </div>
@@ -32,7 +32,7 @@
       </div>
       Add Event
       <div class="row">
-        <h5>{{msg}}</h5>
+        <p style="text-align: center; color: red;">{{msg}}</p>
         <div class="row">
           <div class="card-body">
             <form role="form" action="{% url 'add-event' %}" method="POST" enctype="multipart/form-data">
@@ -58,9 +58,8 @@
                       <input type="file" name="pic" class="form-control" style="background-color: rgb(250, 243, 242); padding-left: 10px; border: black solid 1px;" id="">
                     </div>
                   </div><br><br>
-                  <div class="row" style="padding-top: 10px;">
+                  <div class="row" style="padding-top: 30px;">
                     <div class="col-3">
-
                       <button type="submit" class="btn btn-primary">Add Event</button>
                     </div>
                   </div>
@@ -70,7 +69,6 @@
         </div>
       </div>
     </div>
-    
   </div>
   <br><br>
   <div class="row">
@@ -121,12 +119,12 @@
                   </td>
                   <td class="align-middle">
                     <a href="{% url 'edit-event' event.id %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                      Edit
+                      <i class="fa fa-edit"></i> Edit
                     </a>
                   </td>
                   <td class="align-middle">
                     <a href="{% url 'delete-event' event.id %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                      Delete
+                      <i class="fa fa-trash"></i> Delete
                     </a>
                   </td>
                 </tr>

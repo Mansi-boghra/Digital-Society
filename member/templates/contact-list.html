@@ -1,0 +1,78 @@
+{% extends 'member-header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Contact-list</title>
+{% endblock %}
+
+{% block content %}
+
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04d085;
+    color: white;
+}
+table#customers td {
+    height: 50px;
+}
+
+table#customers th {
+    text-align: center;
+    font-size: 18px;
+}
+table#customers{
+    margin: 50px 0px;
+}
+</style>
+
+<br><br>
+<br><br>
+<div class="container">
+<h2>Contact-list</h2>
+
+
+
+
+<table id="customers">
+ 
+  <tr>
+    <th>Name</th>
+    <th>Occupation</th>
+    <th>Contact</th>
+    <th>Email</th>
+  </tr>
+  {% for one in contacts %}
+  <tr>
+    <td>{{one.name}}</td>
+    <td>{{one.occup}}</td>
+    <td>{{one.contact}}</td>
+    <td>{{one.email}}</td>
+</tr>
+{% endfor %}
+  
+</table>
+</div>
+
+
+
+
+{% endblock %}

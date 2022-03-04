@@ -8,6 +8,23 @@ from .models import *
 class AdminSecModel(admin.ModelAdmin):
     list_display = ['name','email','mobile','created_at']
 
-admin.site.register(Event)
-admin.site.register(Member)
-admin.site.register(Emergency)
+@admin.register(Event)
+class EventModel(admin.ModelAdmin):
+    list_display = ['title','des','event_at','created_at']
+
+@admin.register(Member)
+class MemberModel(admin.ModelAdmin):
+    list_display = ['fname','lname','email','mobile','flat_no','wing','doc_type','doc_num','create_at']
+
+@admin.register(Emergency)
+class EmergencyModel(admin.ModelAdmin):
+    list_display = ['name','occup','contact','email']
+
+admin.site.register(Gallery)
+
+@admin.register(Maintenance)
+class MaintenanceModel(admin.ModelAdmin):
+    list_display = ['pay_by','amount','pay_time','month','year','pay_id']
+
+
+

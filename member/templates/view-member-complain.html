@@ -1,0 +1,88 @@
+{% extends 'member-header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Complain</title>
+{% endblock %}
+
+{% block content %}
+
+<br><br><br><br>
+
+<div class="ui-tabs-accordion mt-50">
+    <h2 class="text-center heading-separator">Complain Details</h2>
+    <div class="row">   
+
+        
+
+        <div class="col-md-12" style="text-align: center; align-items: center; width: 50%; margin-left: 400px;">
+
+            <div class="panel-group accordion mb-50" id="accordion">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                Complain Subject
+                            </a>
+                        </h4><!-- /.panel-title -->
+                    </div><!-- /.panel-heading -->
+                    <div aria-expanded="false" id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>{{complain.subject}}</p>
+                        </div><!-- /.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                </div><!-- /.panel -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">
+                                Description
+                            </a>
+                        </h4><!-- /.panel-title -->
+                    </div><!-- /.panel-heading -->
+                    <div aria-expanded="false" id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>{{complain.des}}</p><br>
+                            <p>solve by:  {{complain.solve_by.name}}</p><br>
+                            <p>created date : {{complain.created_at}}</p>
+                        </div><!-- /.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                </div><!-- /.panel -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">
+                                Status
+                            </a>
+                        </h4><!-- /.panel-title -->
+                    </div><!-- /.panel-heading -->
+                    <div aria-expanded="false" id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>{% if complain.status == True %} Solved {% else %} Pending {% endif %}</p><br>
+                            <p>Solved at:  {{complain.solved_at}}</p>
+
+                        </div><!-- /.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                </div><!-- /.panel -->
+            </div><!-- /.panel-group -->
+
+        </div>
+
+    </div>
+</div>
+
+<br><br><br><br><br>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="{% static 'member-static/assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'member-static/assets/js/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'member-static/assets/js/jquery.slicknav.min.js' %}"></script>
+<script src="{% static 'member-static/assets/js/jquery.countTo.min.js' %}"></script>
+<script src="{% static 'member-static/assets/js/jquery.shuffle.min.js' %}"></script>
+<script src="{% static 'member-static/assets/js/script.js' %}"></script>
+
+
+{% endblock %}

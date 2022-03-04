@@ -1,0 +1,242 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Manage-member</title>
+{% endblock %}
+
+{% block manage-member %}
+<li class="nav-item">
+  <a class="nav-link text-white bg-gradient-primary " href="{% url 'manage-member' %}">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">table_view</i>
+    </div>
+    <span class="nav-link-text ms-1">Manage Member</span>
+  </a>
+</li>
+{% endblock %}
+
+
+{% block content %}
+
+
+<style>
+    .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(80, 73, 73);
+  -webkit-transition: .4s;
+  transition: .4s;
+  }
+  
+  .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: rgb(250, 250, 250);
+  -webkit-transition: .4s;
+  transition: .4s;
+  }
+  
+  input:checked + .slider {
+  background-color: #e696d4;
+  }
+  
+  input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+  border-radius: 34px;
+  }
+  
+  .slider.round:before {
+  border-radius: 50%;
+  }
+  </style>
+  
+  <br><br><br>
+    <div class="container-fluid px-2 px-md-4">
+      
+      <div class="card card-body mx-3 mx-md-4 mt-n6">
+        <div class="row gx-4 mb-2">
+          
+          <div class="col-auto my-auto">
+            <div class="h-100">
+              <h5 class="mb-1" style="margin-left: 50px; margin-top: 50px;">
+                Add Member
+              </h5>
+              
+            </div>
+          </div>
+          
+        </div>
+        <p style="margin-left: 100px; color: red;">{{msg}}</p>
+  
+        <div style="margin: 50px;">
+        <form action="{% url 'manage-member' %}" method="POST">
+            {% csrf_token %}
+          <div class="row">
+              <div class="form-group col-6">
+                  <label for="exampleInputPassword1"><b>First Name</b></label>
+                  <input type="text" class="form-control" style="background-color: rgb(243, 229, 229); padding-left: 20px;" name="fname" id="exampleInputPassword1" placeholder="Member's First Name..." required>
+              </div>
+              <div class="form-group col-6">
+                  <label for="exampleInputPassword1"><b>Last Name</b></label>
+                  <input type="text" class="form-control" style="background-color: rgb(243, 229, 229); padding-left: 20px;" name="lname" id="exampleInputPassword1" placeholder="Member's Last Name..." required>
+              </div>
+          </div><br><br>
+          <div class="row">
+              <div class="form-group col-6">
+                  <label for="exampleInputPassword1"><b>Mobile</b></label>
+                  <input type="text" class="form-control" style="background-color: rgb(243, 229, 229); padding-left: 20px;" name="mobile" id="exampleInputPassword1" placeholder="Member's Mobile..." required>
+              </div>
+              <div class="form-group col-6">
+                  <label for="exampleInputEmail1"><b>Email Address</b></label>
+                  <input type="email" name="email"  class="form-control" id="exampleInputEmail1" style="background-color: rgb(243, 229, 229); padding-left: 20px;" aria-describedby="emailHelp" required placeholder="Member's Email">
+              </div>
+          </div><br><br>
+  
+          <div class="row">
+            <div class="form-group col-3">
+                <label for="exampleInputPassword1"><b>Wing:</b></label>
+                <select name="wing" style="background-color: rgb(243, 229, 229); padding-left: 20px;" class="form-control" id=""  required>
+                    <option value="" selected>--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+            </div>
+
+              <div class="form-group col-3">
+                  <label for="exampleInputPassword1"><b>Flat No:</b></label>
+                  <input type="text" class="form-control" style="background-color: rgb(243, 229, 229); padding-left: 20px;" name="flat_no" id="exampleInputPassword1" placeholder="Member's Flat Number..." required>
+              </div>
+              <div class="form-group col-6">
+                  <label for="exampleInputEmail1"><b>Another Address</b></label>
+                  <input type="text" name="address"  class="form-control" id="exampleInputEmail1" style="background-color: rgb(243, 229, 229); padding-left: 20px;" aria-describedby="emailHelp" required placeholder="Member's Another Address">
+              </div>
+          </div><br><br>
+  
+          <div class="row">
+              <div class="form-group col-3">
+                  <label for="exampleInputEmail1"><b>Select Document Type : </b></label>
+                  <select name="doc" style="background-color: rgb(243, 229, 229); padding-left: 20px;" class="form-control" id=""  required>
+                      <option value="" selected>--</option>
+                      <option value="Aadhar">Aadhar Card</option>
+                      <option value="PAN">PAN number</option>
+                      <option value="DL">Driving License</option>
+                      <option value="Other">Other</option>
+                  </select>
+              </div>
+              <div class="form-group col-3">
+                  <label for="exampleInputEmail1"><b>Is it a Member ?</b></label><br>
+                  <label class="switch">
+                      <input type="checkbox" value="True" name="verify" style="margin-left: 20px;">
+                      <span class="slider round"></span>
+                  </label>
+              </div>
+              <div class="form-group col-6">
+                  <label for="exampleInputPassword1"><b>Document Number</b></label>
+                  <input type="text" class="form-control"  style="background-color: rgb(243, 229, 229); padding-left: 20px;" name="dnumber" id="exampleInputPassword1" placeholder="Document Number..." required>
+              </div>
+          </div><br><br><br>
+          
+          <button type="submit" class="btn btn-primary"><i class="fa fa-user-tag"></i> &nbsp;Add Member</button>
+        </form>
+  
+      </div>
+      </div>
+      <br><br>
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Members</h6>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fname</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">lname</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">wing</th>
+                      <th class="text-secondary opacity-7" style="text-align: left;" colspan="2">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for member in members %}
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                         
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">{{member.fname}}</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0">{{member.lname}}</p>
+                        <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm bg-gradient-success">{{member.email}}</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">{{member.wing}}</span>
+                        <p class="text-xs text-secondary mb-0">{{member.flat_no}}</p>
+                      </td>
+                      <td class="align-middle">
+                        <a href="{% url 'edit_member' member.id %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          <i class="fa fa-edit"></i> Edit
+                        </a>
+                      </td>
+                      <td class="align-middle">
+                        <a href="{% url 'delete-member' member.id %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          <i class="fa fa-trash"></i> Delete
+                        </a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block title %}
+<title>emergency-cont</title>
+{% endblock %}
+
+{% block emergency-cont %}
+<li class="nav-item">
+  <a class="nav-link text-white bg-gradient-primary" href="{% url 'emergency-cont' %}">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="fa fa-phone"></i>
+    </div>
+    <span class="nav-link-text ms-1">emergency contact</span>
+  </a>
+</li>
+{% endblock %}
+
+{% block content %}
+  <!-- End Navbar -->
+  <div class="container-fluid px-2 px-md-4"><br><br><br>
+    <!-- <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+      <span class="mask  bg-gradient-primary  opacity-6"></span>
+    </div> -->
+    <div class="card card-body mx-3 mx-md-4 mt-n6">
+      <div class="row gx-4 mb-2">
+        <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+          <div class="nav-wrapper position-relative end-0">
+            
+          </div>
+        </div>
+      </div>
+      emergency contact
+      <div class="row">
+        <p style="text-align: center; color: red;">{{msg}}</p>
+        <div class="row">
+          <div class="card-body">
+            <form role="form" action="{% url 'emergency-cont' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+                <div class="row">
+                  <div class="col-4">
+                    <label for="" class="form-control">Name</label>
+                    <input type="text" name="name" class="form-control" required placeholder="Enter your name..." style="background-color: rgb(250, 243, 242); padding-left: 10px; border: black solid 1px;" id="">
+                  </div>
+                  <div class="col-4">
+                    <label for="" class="form-control">Occupation</label>
+                    <input type="text" name="occup" class="form-control" required placeholder="Enter your occupation... " style="background-color: rgb(250, 243, 242); padding-left: 10px; border: black solid 1px;" id="">
+                  </div>
+                  <div class="row">
+                    <div class="col-4">
+                      <label for="" class="form-control">Contact-no</label>
+                      <input type="text" name="contact" class="form-control" required placeholder="Enter your contact-no..." style="background-color: rgb(250, 243, 242); padding-left: 10px; border: black solid 1px;" id="">
+                    </div>
+                    <div class="col-4">
+                      <label for="" class="form-control">Email</label>
+                      <input type="email" name="email" class="form-control" required placeholder="Enter your email... " style="background-color: rgb(250, 243, 242); padding-left: 10px; border: black solid 1px;" id="">
+                    </div>
+                  <div class="row" style="padding-top: 10px;">
+                    <div class="col-3">
+
+                      <button type="submit" class="btn btn-primary"><i class="fa fa-phone"></i> &nbsp; emergency-contect</button>
+                    </div>
+                  </div>
+                </div>
+             </form>
+        
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+  <br><br>
+  
+  <div class="row">
+    <div class="col-12">
+      <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+            <h6 class="text-white text-capitalize ps-3">emergency-contect</h6>
+          </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center;">Name:</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Occupation</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Contact :</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email :</th>
+                  <th class="text-secondary opacity-7" style="text-align: center;" >Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for contact in contacts %}
+                <tr>
+                  <td style="margin-left: 50;">
+                    <div class="d-flex px-2 py-1">
+                      
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm" >{{contact.name}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">{{contact.occup}}</p>
+                    <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="badge badge-sm bg-gradient-success">{{contact.contact}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{contact.uid.email}}</span>
+                  </td>
+                  <td class="align-middle" style="text-align: center;">
+                    <a href="{% url 'delete-emergency-contact' contact.id %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                      <i class="fa fa-trash"></i> Delete
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
