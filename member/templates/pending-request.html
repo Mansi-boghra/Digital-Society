@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-<title>Contact-list</title>
+<title>Pending Request</title>
 {% endblock %}
 
 {% block content %}
@@ -43,39 +43,35 @@ table#customers{
     margin: 50px 0px;
 }
 </style>
-<section class="portfolio section">
-  <div class="top-side gallerybg">
-    
-    <h2>Contact-list</h2>
-  </div>
 
-<br><br>
-<br><br>
 
+<section>
+<div class="top-side gallerybg text-center">
+     
+<h2>Pending Request</h2>
+</div>
 <div class="container">
-    <h2>Contact-list</h2>
-
+<h2>Pending Request</h2>
 
 <table id="customers">
- 
   <tr>
-    <th>Name</th>
-    <th>Occupation</th>
-    <th>Contact</th>
-    <th>Email</th>
+    <th>Event title</th>
+    <th>Event date</th>
+    <th>Description</th>
+    <th>status</th>
   </tr>
-  {% for one in contacts %}
+  {% for event in events %}
   <tr>
-    <td>{{one.name}}</td>
-    <td>{{one.occup}}</td>
-    <td>{{one.contact}}</td>
-    <td>{{one.email}}</td>
+    <td style="text-align: center;">{{event.title}}</td>
+    <td style="text-align: center;">{{event.date}}</td>
+    <td style="text-align: center;">{{event.des}}</td>
+    <td></td>
 </tr>
 {% endfor %}
   
 </table>
 </div>
-
+</section>
 
 
 

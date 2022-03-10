@@ -10,7 +10,7 @@ from secratory.views import complain
 # Create your views here.
 
 def index(request):
-    images = Gallery.objects.all()[2::-1]
+    images = Gallery.objects.all()[20::-1]
     memcount = Member.objects.all().count()
     eventcount = Event.objects.all().count()
     complaincount = Complain.objects.all().count()
@@ -65,7 +65,8 @@ def member_change_password(request):
 
 def member_gallery(request):
     uid = Member.objects.get(email=request.session['emails'])
-    return render(request,'member-gallery.html',{'uid':uid})
+    photos = Gallery.objects.all()[::-1]
+    return render(request,'member-gallery.html',{'uid':uid,'photos':photos})
 
 def member_edit_profile(request):
     uid = Member.objects.get(email=request.session['emails'])
@@ -128,6 +129,19 @@ def view_event(request):
     events = Event.objects.all()[::-1]
     return render(request,'view-event.html',{'uid':uid,'events':events})
 
+def pending_request(request):
+    uid = Member.objects.get(email=request.session['emails'])
+    events = Event.objects.all()
+    return render(request,'pending-request.html',{'uid':uid,'events':events})
+
 def member_maintenance(request):
     uid = Member.objects.get(email=request.session['emails'])
     return render(request,'member-maintenance.html',{'uid':uid})
+
+def pay_maintenance(request):
+    uid = Member.objects.get(email=request.session['emails'])
+    return render(request,'pay-maintenance.html',{'uid':uid})
+
+def member_notice(request):
+    uid = Member.objects.get(email=request.session['emails'])
+    return render(request,'member-notice.html',{'uid':uid})

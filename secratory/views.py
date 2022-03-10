@@ -274,27 +274,36 @@ def send_notice(request):
             subject = request.POST['subject'],
             des = request.POST['des'],
         )
+        notice = mm.Notice.objects.all()
         subject = 'Notice alert'
         message = f""" view notice """
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [request.POST['send-to'], ]
         send_mail( subject, message, email_from, recipient_list )
 
-        return render(request,'send-notice.html',{'uid':uid,'members':members,'msg':'Notice is sent'})
-    return render(request,'send-notice.html',{'uid':uid,'members':members})
+        return render(request,'send-notice.html',{'uid':uid,'members':members,'notice':notice,'msg':'Notice is sent'}) 
+    notice = mm.Notice.objects.all()
+    return render(request,'send-notice.html',{'uid':uid,'members':members,'notice':notice})
+
+def delete_notice(request,pk):
+    notice = mm.Notice.objects.get(id=pk)
+    notice.delete()
+    return redirect('send-notice')
 
 def gallery(request):
-    msg = 'Photo added successfully'
+    # msg = 'Photo added successfully'
     uid = AdminSec.objects.get(email=request.session['email'])
     if request.method == 'POST':
         # if 'pic' in request.FILES:
             Gallery.objects.create(
                 uid = uid,
-                # pic = request.FILES['pic'],
-                pic = request.FILES['pic'] if 'pic' in request.FILES else None
+                pic = request.FILES['pic'],
+                type = request.POST['types'],
+                
             )
-            # msg = 'Photo added successfully'
-    return render(request,'gallery.html',{'uid':uid,'msg':msg})
+            msg = 'Photo added successfully'
+            return render(request,'gallery.html',{'uid':uid,'msg':msg}) 
+    return render(request,'gallery.html',{'uid':uid})
 
 def complain(request):
     uid = AdminSec.objects.get(email=request.session['email'])

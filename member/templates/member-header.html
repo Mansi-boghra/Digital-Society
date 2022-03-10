@@ -67,6 +67,7 @@
                             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                               <li><a href="{% url 'request-event' %}"><i class="fa fa-sign-in"></i> &nbsp; Request for event</a></li>
                               <li><a href="{% url 'view-event' %}"><i class="fa fa-eye"></i> &nbsp; view event</a></li>
+                              <li><a href="{% url 'pending-request' %}"><i class="fa fa-clock-o"></i> &nbsp; Pending Request</a></li>
                             </ul>
                         </li>
                         <!-- <li><a href="{% url 'member-gallery' %}">Gallery</a></li>
@@ -77,18 +78,24 @@
                               <li><a href="{% url 'member-my-complain' %}"><i class="fa fa-lock"></i> &nbsp;My Complains</a></li>
                             </ul>
                         </li>
-                        <li><a href="{% url 'member-maintenance' %}"><i class=""></i> &nbsp; Maintenance</a></li>
+                        <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">Maintenance<i class="fa fa-caret-down hidden-xs" aria-hidden="true"></i></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                             <li><a href="{% url 'member-maintenance' %}"><i class="fa fa-money"></i> &nbsp; Maintenance</a></li>  
+                              <li><a href="{% url 'pay-maintenance' %}"><i class="fa fa-money"></i> &nbsp;Pay Maintenance</a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">More<i class="fa fa-caret-down hidden-xs" aria-hidden="true"></i></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                               <li><a href="{% url 'member-gallery' %}"><i class="fa fa-sign-in"></i> &nbsp; Gallery</a></li>
                               <li><a href="{% url 'contact-list' %}"><i class="fa fa-eye"></i> &nbsp; Contact list</a></li>
+                              <li><a href="{% url 'member-notice' %}"><i class="fa fa-envelope"></i> &nbsp; Notice</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">{{uid.fname}}'s profile<i class="fa fa-caret-down hidden-xs" aria-hidden="true"></i></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                               <li><a href="{% url 'member-edit-profile' %}"><i class="fa fa-edit"></i> &nbsp; Edit Profile</a></li>
                               <li><a href="{% url 'member-change-password' %}"><i class="fa fa-lock"></i> &nbsp; change-password</a></li>
-                              <li><a href="{% url 'logout' %}"><i class="fa fa-power-off"></i> &nbsp; logout</a></li>
+                              <li><a href="{% url 'member-logout' %}"><i class="fa fa-power-off"></i> &nbsp; logout</a></li>
                             </ul>
                         </li>
                         {% else %}

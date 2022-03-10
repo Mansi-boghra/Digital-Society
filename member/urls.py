@@ -10,7 +10,7 @@ urlpatterns = [
     path('member-contact/',views.member_contact,name='member-contact'),
     path('member-login/',views.member_login,name='member-login'),
     path('member-change-password/',views.member_change_password,name='member-change-password'),
-    path('logout/',views.logout,name='logout'),
+    path('logout/',views.logout,name='member-logout'),
     path('member-gallery/',views.member_gallery,name='member-gallery'),
     path('member-edit-profile/',views.member_edit_profile,name='member-edit-profile'),
     path('contact-list/',views.contact_list,name='contact-list'),
@@ -19,7 +19,12 @@ urlpatterns = [
     path('view-member-complain/<int:pk>',views.view_member_complain,name='view-member-complain'),
     path('request-event/',views.request_event,name='request-event'),
     path('view-event/',views.view_event,name='view-event'),
+    path('pending-request/',views.pending_request,name='pending-request'),
     path('member-maintenance/',views.member_maintenance,name='member-maintenance'),
+    path('pay-maintenace',views.pay_maintenance,name='pay-maintenance'),
+    path('member-notice/',views.member_notice,name='member-notice'),
+
+    
 
     
 

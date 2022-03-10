@@ -123,58 +123,24 @@
     <div class="filters">
       <ul>
         <li class="active" data-filter="*">All</li>
-        <li data-filter=".corporate">Corporate</li>
-        <li data-filter=".personal">Personal</li>
-        <li data-filter=".agency">Agency</li>
-        <li data-filter=".portal">Portal</li>
+        <li data-filter=".garden">Garden</li>
+        <li data-filter=".events">Event</li>
+        <li data-filter=".society">Society</li>
+        <li data-filter=".gym">Gym</li>
       </ul>
     </div>
     
     <div class="filters-content">
       <div class="row grid">
-        <div class="col-sm-4 all corporate">
+
+        {% for photo in photos %}
+        <div class="col-sm-4 all {{photo.type}}">
           <div class="item">
-            <img src="https://i.picsum.photos/id/923/1000/1200.jpg?hmac=aTXp3_sl8AMqNddbsjWOIy6R8-RCLWB5GoFrQUWIusA" alt="Work 1">
+            <img src="{{photo.pic.url}}" alt="Work 1">
            
           </div>
         </div>
-        <div class="col-sm-4 all personal ">
-          <div class="item">
-            <img src="https://i.picsum.photos/id/1014/1000/1600.jpg?hmac=J7nIoCc0sqwy89muMNzuYWzK3UcBlAAraWUGR1r6X4U" alt="Work 1">
-            
-          </div>
-        </div>
-        <div class="col-sm-4 all agency">
-          <div class="item">
-            <img src="https://i.picsum.photos/id/1081/1000/1400.jpg?hmac=OhhXp4iAtTJQcx6fx3dehRJ7R3YjEqDcxow-sj6z0sc" alt="Work 1">
-           
-          </div>
-        </div>
-        <div class="col-sm-4 all portal">
-          <div class="item">
-            <img src="https://i.picsum.photos/id/267/1200/1400.jpg?hmac=3rlhklmRH3kQvtK87L57l5ewC9WGL5pF8d7xQhb82bg" alt="Work 1">
-           
-          </div>
-        </div>
-        <div class="col-sm-4 all portal">
-          <div class="item">
-            <img src="https://i.picsum.photos/id/267/1200/1400.jpg?hmac=3rlhklmRH3kQvtK87L57l5ewC9WGL5pF8d7xQhb82bg" alt="Work 1">
-           
-          </div>
-        </div>
-        
-        <div class="col-sm-4 all portal">
-          <div class="item">
-            <img src="https://i.picsum.photos/id/267/1200/1400.jpg?hmac=3rlhklmRH3kQvtK87L57l5ewC9WGL5pF8d7xQhb82bg" alt="Work 1">
-           
-          </div>
-        </div>
-        <div class="col-sm-4 all portal">
-          <div class="item">
-            <img src="https://i.picsum.photos/id/267/1200/1400.jpg?hmac=3rlhklmRH3kQvtK87L57l5ewC9WGL5pF8d7xQhb82bg" alt="Work 1">
-           
-          </div>
-        </div>
+        {% endfor %}
         
       </div>
     </div>

@@ -20,6 +20,7 @@ urlpatterns = [
     path('delete-member/<int:pk>',views.delete_member,name='delete-member'),
     path('edit-member/<int:pk>',views.edit_member,name='edit_member'),
     path('send-notice/',views.send_notice,name='send-notice'),
+    path('delete-notice/<int:pk>',views.delete_notice,name='delete-notice'),
     path('gallery/',views.gallery,name='gallery'),
     path('complain/',views.complain,name='complain'),
     path('solve-complain/<int:pk>',views.solve_complain,name='solve-complain'),

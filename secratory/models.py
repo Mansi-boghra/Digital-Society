@@ -63,7 +63,10 @@ class Member(models.Model):
 
 class Gallery(models.Model):
 
+    choices = (('garden','garden'),('gym','gym'),('events','events'),('society','society'))
+
     uid = models.ForeignKey(AdminSec,on_delete=models.CASCADE)
+    type = models.CharField(max_length=20,choices=choices,default='events')
     pic = models.FileField(upload_to='gallery')
 
     def __str__(self):
