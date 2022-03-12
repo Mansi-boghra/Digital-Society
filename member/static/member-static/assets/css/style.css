@@ -44,7 +44,9 @@ a {
     cursor: pointer;
     color: #9fa3a7;
 }
-
+.top-side.gallerybg {
+    text-align: center;
+}
 a:focus,
 a:hover {
     color: #6fc754;

@@ -1,0 +1,156 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>GFG</title>
+
+</head>
+<body>
+	
+</body>
+
+
+
+</html> -->
+
+
+
+
+
+
+{% extends 'member-header.html' %}
+{% load static %}
+
+{% block title %}
+<title>Maintenance</title>
+<style>
+	.card {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+section.complain {}
+
+section.complain {
+    height: 100vh;
+}
+	.card {
+		background-color: white;
+		padding: 25px;
+		border: 1px solid #bbbbbb;
+		border-radius: 5px;
+		box-shadow: 1px 1px 10px 0px rgb(0 0 0 / 25%);
+		max-width: 450px;
+		margin: auto;
+	}
+	.title {
+		text-align: center;
+		color: green;
+		letter-spacing: 1px;
+	}
+	.muted {
+		color: #8e7f7f;
+		display: block;
+		margin-bottom: 10px;
+		text-align: center;
+	}
+	.btn_container {
+		padding: 20px;
+		text-align: center;
+	}
+	.btn {
+		border-radius: 4px;
+		cursor: pointer;
+		padding: 4px 8px;
+		background-color: #ffaaa7;
+		color: white;
+		font-size: 1.2em;
+		font-weight: 600;
+		letter-spacing: 1px;
+	}
+	.card h1 {
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.card {
+    text-align: center;
+    margin: 50px auto;
+    border-radius: 30px 30px;
+}
+
+.card p {
+    color: black;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+button#pay-btn {
+    width: 150px;
+    height: 50px;
+    background: black;
+    color: white;
+    min-width: 150px;
+    margin-top: 10px;
+}
+	</style>
+{% endblock %}
+
+{% block content %}
+<!-- End Navbar -->
+<section class="complain">
+    <div class="top-side gallerybg text-center"> 
+      <!-- <h2>Proceed To Pay</h2> -->
+    </div>
+    <div class="container-fluid px-2 px-md-4">
+        <!-- <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+          <span class="mask  bg-gradient-primary  opacity-6"></span>
+        </div> -->
+		<div class="card">
+			<h1 class="title">Proceed To Pay</h1>
+			<small class="muted">Please Pay Maintenance of {{main.month}}</small>
+			<p>Pay By : {{main.pay_by.fname}} {{main.pay_by.lname}}</p>
+			<div class="btn_container">
+				<!-- Payment Button -->
+				<button class="btn" id="pay-btn">Pay</button>
+			</div>
+			</div>
+    </div>
+    </section>
+	<!-- Razorpay's Javascript code. -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+		var options = {
+		
+		// Enter the Key ID generated from the Dashboard
+		key: "{{ razorpay_merchant_key }}",
+		
+		// Amount is in currency subunits.
+		// Default currency is INR. Hence,
+		// 50000 refers to 50000 paise
+		amount: "{{ razorpay_amount }}",
+		currency: "{{ currency }}",
+		
+		// Your/store name.
+		name: "DM mofat store",
+		
+		// Pass the `id` obtained in the response of Step 1
+		order_id: "{{ razorpay_order_id }}",
+		callback_url: "{{ callback_url }}",
+		};
+		
+		// initialise razorpay with the options.
+		var rzp1 = new Razorpay(options);
+		
+		// add event listener to the payment button.
+		document.getElementById("pay-btn").onclick = function (e) {
+		rzp1.open();
+		e.preventDefault();
+		};
+	</script>
+{% endblock %}

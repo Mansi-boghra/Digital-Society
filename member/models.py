@@ -28,5 +28,14 @@ class Complain(models.Model):
         return self.subject + '  ' + self.complain_by.fname
 
 
+class Maintenance(models.Model):
     
+    pay_by = models.ForeignKey(Member,on_delete=models.CASCADE)
+    amount = models.IntegerField()
+    month = models.DateField()
+    pay_date = models.DateTimeField(auto_now_add=True)
+    pay_id = models.CharField(max_length=50)
+    verify = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.pay_by.fname + ' >> ' + str(self.month)

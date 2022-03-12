@@ -22,9 +22,3 @@ class EmergencyModel(admin.ModelAdmin):
 
 admin.site.register(Gallery)
 
-@admin.register(Maintenance)
-class MaintenanceModel(admin.ModelAdmin):
-    list_display = ['pay_by','amount','pay_time','month','year','pay_id']
-
-
-

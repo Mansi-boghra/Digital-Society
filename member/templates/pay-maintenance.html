@@ -55,20 +55,21 @@ table#customers{
 
 <table id="customers">
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  
-  <tr>
-    <td style="text-align: center;"></td>
-    <td style="text-align: center;"></td>
-    <td style="text-align: center;"></td>
-    <td></td>
+    <th>pay_by</th>
+    <th>Amount</th>
+    <th>Month</th>
+    <th>Pay_id</th>
   </tr>
 
-  
+  {% for i in main %}
+  <tr>
+    <td style="text-align: center;">{{i.pay_by}}</td>
+    <td style="text-align: center;">{{i.amount}}</td>
+    <td style="text-align: center;">{{i.month}}</td>
+    <td style="text-align: center;">{{i.pay_id}}</td>
+  </tr>
+  {% endfor %}
+
 </table>
 </div>
 </section>

@@ -133,3 +133,6 @@ EMAIL_HOST_PASSWORD = 'digital1234'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+RAZOR_KEY_ID = 'rzp_test_egMkeMMZ2VGZZy'
+RAZOR_KEY_SECRET = '7WdNkSJupIsOiUxO6d2lGOD0'

@@ -283,7 +283,7 @@ def send_notice(request):
 
         return render(request,'send-notice.html',{'uid':uid,'members':members,'notice':notice,'msg':'Notice is sent'}) 
     notice = mm.Notice.objects.all()
-    return render(request,'send-notice.html',{'uid':uid,'members':members,'notice':notice})
+    return render(request,'send-notice.html',{'uid':uid,'members':members,'notices':notice})
 
 def delete_notice(request,pk):
     notice = mm.Notice.objects.get(id=pk)
@@ -331,4 +331,5 @@ def view_complain(request,pk):
 
 def maintenance(request):
     uid = AdminSec.objects.get(email=request.session['email'])
-    return render(request,'maintenance.html',{'uid':uid})
+    main = mm.Maintenance.objects.all()
+    return render(request,'maintenance.html',{'uid':uid,'main':main})

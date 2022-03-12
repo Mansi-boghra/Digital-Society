@@ -23,15 +23,6 @@ urlpatterns = [
     path('member-maintenance/',views.member_maintenance,name='member-maintenance'),
     path('pay-maintenace',views.pay_maintenance,name='pay-maintenance'),
     path('member-notice/',views.member_notice,name='member-notice'),
-
+    path('member-maintenance/paymenthandler/<int:pk>', views.paymenthandler, name='paymenthandler'),
     
-
-    
-
-
-
-
-
-
-
 ]
