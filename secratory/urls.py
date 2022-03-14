@@ -26,7 +26,6 @@ urlpatterns = [
     path('solve-complain/<int:pk>',views.solve_complain,name='solve-complain'),
     path('view-complain/<int:pk>',views.view_complain,name='view-complain'),
     path('maintenance/',views.maintenance,name='maintenance'),
-
     
 ]
 

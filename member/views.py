@@ -174,7 +174,8 @@ def pay_maintenance(request):
 
 def member_notice(request):
     uid = Member.objects.get(email=request.session['emails'])
-    return render(request,'member-notice.html',{'uid':uid})
+    notices = Notice.objects.all()
+    return render(request,'member-notice.html',{'uid':uid,'notices':notices})
 
 
 # authorize razorpay client with API Keys.

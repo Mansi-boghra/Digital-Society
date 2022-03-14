@@ -331,5 +331,5 @@ def view_complain(request,pk):
 
 def maintenance(request):
     uid = AdminSec.objects.get(email=request.session['email'])
-    main = mm.Maintenance.objects.all()
+    main = mm.Maintenance.objects.filter(verify=True)[::-1]
     return render(request,'maintenance.html',{'uid':uid,'main':main})
